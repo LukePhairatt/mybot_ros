@@ -1,0 +1,43 @@
+# ----------------------------------------------------- #
+# 		How to run ROS the mobile robot 	#
+# -----------------------------------------------------	#  
+
+#  NO NAVIGATION amcl + with and without laser scanner  #
+
+# [Hardware Interface]
+# <start ROS arduino mobile base- hardware interface node>
+$ roslaunch ros_arduino_python arduino.launch  
+$ roslaunch ros_arduino_python arduino_urdf.launch
+ 
+
+# [manual Velocity control]
+# <bring up teleop key to pub -> /cmd_vel topic>
+# v = 0.2 m/s   w = 0.6 rad/s
+$ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+# <or running from the command line to continously pub -> cmd_vel 
+$ rostopic pub /cmd_vel geometry_msgs/Twist -r 1 -- '[0.3, 0.0, 0.0]' '[0.0, 0.0, 6]'
+# <to stop use this>
+$ rostopic pub -1 /cmd_vel geometry_msgs/Twist '{}'
+
+# [State monitoring] 
+# <monitoring topics>
+$ rostopic echo /cmd_vel
+$ rosrun tf tf_monitor /base_footprint /odom
+$ rosrun tf tf_echo /map /odom
+   
+# [Rviz Graphical Interface]
+# <rviz graphical interface>
+(navigation)$ rosrun rviz rviz -d `rospack find rbx1_nav`/nav.rviz
+(with laser scanner) $ rosrun rviz rviz -d `rospack find rbx1_nav`/fake_laser.rviz
+
+
+# [map Server] 
+$ roslaunch rbx1_nav mybot_move_base_blank_map.launch
+
+
+# [Controlling the robot base from the programe] 
+$ rosrun rbx1_nav timed_out_and_back.py (without navigation stack)
+
+
+

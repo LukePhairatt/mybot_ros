@@ -1,0 +1,11 @@
+1.[test fake laser no robot base connection] require arduino base serial com running!
+# <bringup ROS arduino mobile base>
+$ roslaunch ros_arduino_python test_urdf.launch
+
+
+2.[laser scanner or depth camera- openni]
+$ roslaunch rbx1_bringup fake_laser2.launch
+
+
+4.[Rviz Graphical Interface]
+$ rosrun rviz rviz -d `rospack find rbx1_nav`/fake_laser.rviz

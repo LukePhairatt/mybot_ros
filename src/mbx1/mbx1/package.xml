@@ -1,0 +1,23 @@
+<package>
+  <name>mbx1</name>
+  <version>0.1.0</version>
+  <description>
+    ROS my bot description
+  </description>
+  <maintainer email="rookieluke999@gmail.com">
+    PunnuPhairatt
+  </maintainer>
+  <license>TODO</license>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>mbx1_description</run_depend>
+
+  
+  <export>
+    <metapackage/>
+  </export>
+
+</package>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<robot name="my_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+   <!-- Define a number of dimensions using properties -->
+   <!-- Camera offset from the base link-->
+   <property name="camera_offset_x" value="0.06" />
+   <property name="camera_offset_y" value="0" />
+   <property name="camera_offset_z" value="0.04" />
+
+   <!-- The following include files set up definitions of parts of the robot body -->
+   <xacro:include filename="$(find rbx2_description)/urdf/materials.urdf.xacro" />
+   <xacro:include filename="$(find rbx2_description)/urdf/my_robot/base.urdf.xacro" />
+   <xacro:include filename="$(find hector_sensors_description)/urdf/asus_camera.urdf.xacro" />
+
+   <!-- Now we can start using the macros included above to define the actual robot -->
+   
+   <!-- Start with the base and wheels -->
+   <base name="base" color="Black"/>
+
+   <!-- Attach the camera -->
+   <asus_camera_model name="camera" parent="base">
+      <origin xyz="${camera_offset_x} ${camera_offset_y} ${camera_offset_z}" rpy="0 0 0" />
+   </asus_camera_model>
+   
+
+</robot>
